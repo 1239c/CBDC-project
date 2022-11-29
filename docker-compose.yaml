@@ -49,10 +49,14 @@ services:
       ECDSA_PRIVATEKEY_2: ${ECDSA_PRIVATEKEY_2}
       # 銀行Django金鑰
       BANK_SECRET_KEY: ${BANK_SECRET_KEY}
+      # 銀行發行代金券Token長度
+      BANK_VOUCHER_LENGTH: ${BANK_VOUCHER_LENGTH}
+      # 銀行使用者支付ID
+      BANK_USER_PAYMENT_ID_LENGTH: ${BANK_USER_PAYMENT_ID_LENGTH}
       # 銀行Django 內網 IP
       BANK_DJANGO_SERVICE_IP: 10.0.0.1
       # 使用者密碼學支援服務URL
-      USER_CRYPTOGRAPHY_SUPPORT_FLASK_SERVICE_URL:  http://10.0.0.6
+      USER_CRYPTOGRAPHY_SUPPORT_FLASK_SERVICE_URL:  ${CRYPTOGRAPHY_SUPPORT_FLASK_SERVICE}
     # 等待資料庫系統運作後再啟動
     depends_on:
       - bank-database-service

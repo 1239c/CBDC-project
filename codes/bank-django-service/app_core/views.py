@@ -6,6 +6,10 @@ from app_core.services.Register import Register
 from app_core.services.PartiallyBlindSignaturePublicParameters import PartiallyBlindSignaturePublicParameters
 from app_core.services.PartiallyBlindSignature import PartiallyBlindSignature
 from app_core.services.Voucher import Voucher
+from app_core.services.RedeemCurrency import RedeemCurrency
+from app_core.services.GetBalance import GetBalance
+from app_core.services.GetUserPaymentID import GetUserPaymentID
+from app_core.services.AesVerifyKey import AesVerifyKey
 """
 前端頁面
 
@@ -28,6 +32,9 @@ def login(request):
 
 def register(request):
     return render(request, 'register/index.html')
+
+def logout(request):
+    return render(request, 'logout/index.html')
 
 """
 API
@@ -114,3 +121,31 @@ def api_generate_voucher(request):
 def redeem_voucher(request):
     obj = Voucher()
     return obj.redeem_voucher(request)
+
+"""
+使用者存款服務
+"""
+#以盲簽章兌換使用者存款
+def redeem_currency(request):
+    obj = RedeemCurrency()
+    return obj.redeem_currency(request)
+# 使用者查詢餘額
+def get_balance(request):
+    obj = GetBalance()
+    return obj.get_balance(request)
+# 取得使用者支付ID
+def bank_user_payment_id(request):
+    obj = GetUserPaymentID()
+    return obj.get_user_payment_ID(request)
+
+"""
+使用者 AES 電子錢包
+"""
+# 設置電子錢包認證密文
+def api_set_aes_verify_ciphertext(request):
+    obj = AesVerifyKey()
+    return obj.set_aes_verify_ciphertext(request)
+# 取得電子錢包認證密文
+def api_get_aes_verify_ciphertext(request):
+    obj = AesVerifyKey()
+    return obj.get_aes_verify_ciphertext(request)
